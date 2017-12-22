@@ -10,4 +10,13 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    // Status
+    public $successStatus       = 200;
+    public $errorStatus         = 500;
+    public $errorArray          = [ 'status' => 'error' ];
+    public $successArray        = [ 'status' => 'success' ];
+    public $notFoundStatus      = 404;
+    public $unauthorizedStatus  = 401;
+
 }
