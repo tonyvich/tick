@@ -9,62 +9,77 @@
           <h2>Create a new project</h2>
         </div>
         <div class="box-body">
-          <form [formGroup]="projectForm" (ngSubmit)="saveTask()">
+          <div class="alert alert-danger" *ngIf="saveError">
+            The project was not correctly saved. Please check your form and retry
+          </div>
+          <form [formGroup]="projectForm" (ngSubmit)="saveProject()">
             <div class="form-group">
-                <label>Name</label>
-                <input formControlName="name" type="text" class="form-control">
+              <label>Name</label>
+              <input formControlName="name" type="text" class="form-control">
+            </div>
+            <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+              Choose a unique name for your project
+            </div>
+            <div class="alert alert-danger" *ngIf="saveError && projectExist">
+              The project name already exist please choose a different name for your project
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <textarea  formControlName="description" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Project end date</label>
+              <div class="input-group">
+                <input formControlName="ends_at" class="form-control" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker">
+                <span class="input-group-addon" (click)="d.toggle()">
+                  <i class="fa fa-calendar"></i>
+                </span>
               </div>
-              <div class="form-group">
-                <label>Description</label>
-                <textarea  formControlName="description" class="form-control" rows="3"></textarea>
-              </div>
-              <div class="form-group">
-                <label>Project end date</label>
-                <div class="input-group">
-                  <input formControlName="ends_at" class="form-control" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker">
-                  <span class="input-group-addon" (click)="d.toggle()">
-                    <i class="fa fa-calendar"></i>
-                  </span>
-                </div>
-              </div>
-              <p>Project color:</p>
-              <p data-target="color">
-                <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
-                  <input formControlName="color" type="radio" value="primary" checked>
-                  <i class="primary"></i>
-                </label>
-                <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
-                  <input formControlName="color" type="radio" value="accent">
-                  <i class="accent"></i>
-                </label>
-                <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
-                  <input formControlName="color" type="radio" name="color" value="warn">
-                  <i class="warn"></i>
-                </label>
-                <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
-                  <input formControlName="color" type="radio" name="color" value="success">
-                  <i class="success"></i>
-                </label>
-                <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
-                  <input formControlName="color" type="radio" name="color" value="info">
-                  <i class="info"></i>
-                </label>
-                <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
-                  <input type="radio" name="color" value="warning">
-                  <i class="warning"></i>
-                </label>
-                <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
-                  <input type="radio" name="color" value="danger">
-                  <i class="danger"></i>
-                </label>
-              </p>
-              <div class="form-group">
-                <label>Assign to:</label>
-                <select class="form-control">
-                  <option *ngFor="let user of users" value="{{ user.id }}">{{ user.name }}</option>
-                </select>
-              </div>
-              <button type="submit" class="btn btn-info">Create</button>
+            </div>
+            <p>Project color:</p>
+            <p data-target="color">
+              <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
+                <input formControlName="color" type="radio" value="primary">
+                <i class="primary"></i>
+              </label>
+              <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
+                <input formControlName="color" type="radio" value="accent">
+                <i class="accent"></i>
+              </label>
+              <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
+                <input formControlName="color" type="radio" value="warn">
+                <i class="warn"></i>
+              </label>
+              <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
+                <input formControlName="color" type="radio" value="success">
+                <i class="success"></i>
+              </label>
+              <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
+                <input formControlName="color" type="radio" value="info">
+                <i class="info"></i>
+              </label>
+              <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
+                <input formControlName="color" type="radio" value="warning">
+                <i class="warning"></i>
+              </label>
+              <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
+                <input formControlName="color" type="radio" value="danger">
+                <i class="danger"></i>
+              </label>
+            </p>
+            <div class="alert alert-danger" *ngIf="color.invalid">
+              Please choose a color for your project
+            </div>
+            <div class="form-group">
+              <label>Assign to:</label>
+              <select formControlName="assigned_to" class="form-control">
+                <option *ngFor="let user of users" value="{{ user.id }}">{{ user.name }}</option>
+              </select>
+            </div>
+            <div class="alert alert-danger" *ngIf="assignedTo.touched && assignedTo.invalid">
+              Please assign the project to someone even yourself!    
+            </div>
+            <button type="submit" class="btn btn-info">Create</button>
           </form>
         </div>
       </div>

@@ -1,11 +1,12 @@
+import { UserService } from './service/user.service';
 // Module
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DataTableModule } from 'angular-4-data-table/src/index';
 
 import { AppComponent } from './app.component';
@@ -134,6 +135,7 @@ import { TaskService } from 'app/service/task.service';
     AuthGuardService,
     ProjectService,
     TaskService,
+    UserService
   ],
   bootstrap: [ 
     AppComponent 

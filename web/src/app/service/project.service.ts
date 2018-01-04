@@ -68,4 +68,19 @@ export class ProjectService {
     return counted;
   }
 
+  /**
+   * Save project ( Save project to database )
+   * @param project
+   */
+  saveProject( project )
+  {
+    // Populating the request body
+    let body = new URLSearchParams
+    Object.entries( project ).forEach(
+      ([key, value]) => body.set( key, value )
+    );
+    // Sending the request
+    return this.http.post( this.serverUrl + "/project", body.toString(), this.options );
+  }
+
 }
