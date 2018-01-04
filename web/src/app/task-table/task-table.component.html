@@ -1,0 +1,66 @@
+<div *ngIf="control" class="wrapper">
+  
+  <div class="row p-a">
+    <div class="col-sm-5">
+      <select class="custom-select inline v-middle" [(ngModel)] = "bulkAction">
+        <option value="mark_as_completed">Mark as completed</option>
+        <option value="mark_as_not_compled">Mark as not completed</option>
+      </select>
+      <button class="btn white" (click)="bulkActions()">Apply</button>
+      <a [routerLink]="['/new-task', project.project.id ]" class="btn white">
+        <i class="fa fa-plus"></i> New task
+      </a>
+    </div>
+    <!-- End task tools -->
+  </div>
+
+  <div class="table-responsive">
+      <data-table
+      [items]="tasks"
+      [itemCount]="taskCount"
+      (reload)="reloadTasks($event)"
+  
+      [pagination]="false"
+      [indexColumn]="false"
+      [selectColumn]="true"
+      [multiSelect]="true"
+      >
+      <data-table-column
+        property="name"
+        header="Name"
+        sortable="true">
+      </data-table-column>
+      <data-table-column
+        property="description"
+        header="Description"
+        sortable="true">
+      </data-table-column>
+      <data-table-column
+        property="ends_at"
+        header="Date end"
+        sortable="true">
+      </data-table-column>
+      <data-table-column
+        property="completed"
+        header="Status"
+        sortable="true">
+        <ng-template #dataTableCell let-item="item">
+          <span *ngIf="item.completed == 0" class="text-danger"> Remaining </span>
+          <span *ngIf="item.completed == 1" class="text-success"> Completed</span>
+        </ng-template>
+      </data-table-column>
+      <data-table-column
+        header="Actions">
+        <ng-template #dataTableHeader let-item="item">
+          <i>Actions</i>
+        </ng-template>
+        <ng-template #dataTableCell let-item="item">
+          <a (click)="toggleTaskStatus( item )">
+            <i *ngIf="item.completed == 0" class="fa fa-check text-success"></i>
+            <i *ngIf="item.completed == 1" class="fa fa-times text-danger"></i>
+          </a>
+        </ng-template>
+      </data-table-column>
+    </data-table>       
+  </div>
+</div>

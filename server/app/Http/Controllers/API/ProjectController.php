@@ -20,6 +20,10 @@ class ProjectController extends Controller
     public function get_user_projects( $column = 'ends_at', $order = 'asc' )
     {
         $projects = Project::where( 'user_id', Auth::id() )->orderBy( $column , $order )->get();
+        foreach( $projects as &$project )
+        {
+            $project[ 'tasks' ] = $project->tasks()->get();
+        }
         return response()->json([
             'projects' =>  $projects
         ], $this->successStatus );
@@ -40,9 +44,9 @@ class ProjectController extends Controller
             $project = Project::find( $id );
             return response()->json([
                     'project' => [
-                        'Project'   => $project,
-                        'Tasks'     => $project->tasks( $task_column, $task_order )->get(),
-                        'Assignee'  => $project->assignee()->first()
+                        'project'   => $project,
+                        'tasks'     => $project->tasks( $task_column, $task_order )->get(),
+                        'assignee'  => $project->assignee()->first()
                     ]
                 ],
                 $this->successStatus

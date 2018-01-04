@@ -1,0 +1,45 @@
+<div class="padding" *ngIf="dataReady">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <!-- Project details-->
+      <div class="box primary">
+        <div class="box-header">
+          <h2>{{ project.project.name }}</h2>
+        </div>
+        <div class="box-body">
+          <h6><strong>Project description:</strong></h6>
+          <p>{{ project.project.description }}</p>
+          <span class="h6"><strong>Assigned to:</strong></span> {{ project.assignee.name }} <br>	
+          <span class="h6"><strong>Project end date:</strong></span> {{ project.project.ends_at }} <br>
+          <span class="h6"><strong>Status:</strong></span> {{ project.counted.all }} Tasks, {{ project.counted.finished }} Finished, {{ project.counted.remaining }} Remaining<br>
+        </div>
+      </div>
+      <!-- Project tasks -->
+      <div class="box" >
+        <div class="box-header">
+          <h2><strong>Project tasks</strong></h2>
+        </div>
+        <!-- Task tools -->
+        <div class="box-tool">
+        </div>
+
+        <!-- Data table -->
+        <app-task-table [id]="project.project.id"></app-task-table>
+        <!-- end Data table -->
+        
+        <footer class="light lt p-a">
+          
+          <div class="row">
+            <div class="col-sm-4 hidden-xs">
+            </div>
+            <div class="col-sm-4 text-center">
+              <small class="text-muted inline m-t-sm m-b-sm">{{ project.counted.all }} Tasks, {{ project.counted.finished }} Finished, {{ project.counted.remaining }} Remaining</small>
+            </div>
+          </div>
+
+        </footer>
+      </div>
+      
+    </div>	
+  </div>
+</div>

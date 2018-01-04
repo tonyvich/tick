@@ -17,9 +17,9 @@ class UserController extends Controller
  * @return \Illuminate\Http\Response
 **/
 
-    public function login()
+    public function login( Request $request )
     {
-        if( Auth::attempt(['email' => request('email'), 'password' => request('password')] ))
+        if( Auth::attempt([ 'email' => $request->input( 'username' ), 'password' => $request->input( 'password' )] ))
         {
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')->accessToken;
@@ -27,7 +27,7 @@ class UserController extends Controller
         } 
         else 
         {
-            return response()->json(['error'=>'Unauthorised'], 401);
+            return response()->json([ 'error' => $request->input( 'username' ) ], 401);
         }   
     }
 

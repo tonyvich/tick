@@ -1,0 +1,40 @@
+<div *ngIf="dataReady">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="box">
+        <div class="box-header">
+          <h2>Add a task to "{{ project.project.name }}" project</h2>
+        </div>
+        <div class="box-body">
+          <form [formGroup]="taskForm" (ngSubmit)="saveTask()">
+            <div *ngIf="formError" class="alert alert-danger">
+              An error occured while saving the task. Please verify it
+            </div>
+            <div class="form-group">
+              <label>Name</label>
+              <input formControlName="name" type="text" name="project_name" class="form-control">
+              <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+                The task name is required
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <textarea formControlName="description" class="form-control" rows="3" name="project_detail"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Task end date</label>
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd" formControlName="ends_at" ngbDatepicker #d="ngbDatepicker">
+                <span class="input-group-addon" (click)="d.toggle()">
+                  <i class="fa fa-calendar"></i>
+                </span>
+              </div>
+            </div>
+            <ngb-timepicker formControlName="ends_hour"></ngb-timepicker>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>	
+  </div>
+</div>

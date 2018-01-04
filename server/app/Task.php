@@ -49,11 +49,11 @@ class Task extends Model
      * Mark task as completed
      * @return boolean
      */
-    public function completed()
+    public function completed( $author )
     {
         $this->completed = true;
         $this->completed_at = date( 'Y-m-d H:i:s' );
-        $this->completed_by = Auth::id();
+        $this->completed_by = $author;
         return ( $this->save() ) ? true : false ;
     }
 

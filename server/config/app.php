@@ -178,6 +178,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         // Laravel passport service provider
         Laravel\Passport\PassportServiceProvider::class,
+        // Barry vdh cors handler
+        Barryvdh\Cors\ServiceProvider::class,
     ],
 
     /*

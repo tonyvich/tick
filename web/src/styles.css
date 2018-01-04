@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'assets/bootstrap/bootstrap.min.css';
+@import 'assets/font-awesome/css/font-awesome.css';
+@import 'assets/glyphicons/glyphicons.css';
+@import 'assets/material-design-icons/material-design-icons.css';
+@import 'assets/styles/font.css';
+@import 'assets/styles/app.css';
+
+.custom-content {
+    padding-top: 3.5rem !important;
+}

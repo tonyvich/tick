@@ -1,0 +1,73 @@
+<div>
+  <div class="row">
+    <div class="col-md-2">
+      
+    </div>
+    <div class="col-md-8">
+      <div class="box">
+        <div class="box-header">
+          <h2>Create a new project</h2>
+        </div>
+        <div class="box-body">
+          <form [formGroup]="projectForm" (ngSubmit)="saveTask()">
+            <div class="form-group">
+                <label>Name</label>
+                <input formControlName="name" type="text" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+                <textarea  formControlName="description" class="form-control" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label>Project end date</label>
+                <div class="input-group">
+                  <input formControlName="ends_at" class="form-control" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker">
+                  <span class="input-group-addon" (click)="d.toggle()">
+                    <i class="fa fa-calendar"></i>
+                  </span>
+                </div>
+              </div>
+              <p>Project color:</p>
+              <p data-target="color">
+                <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
+                  <input formControlName="color" type="radio" value="primary" checked>
+                  <i class="primary"></i>
+                </label>
+                <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
+                  <input formControlName="color" type="radio" value="accent">
+                  <i class="accent"></i>
+                </label>
+                <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
+                  <input formControlName="color" type="radio" name="color" value="warn">
+                  <i class="warn"></i>
+                </label>
+                <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
+                  <input formControlName="color" type="radio" name="color" value="success">
+                  <i class="success"></i>
+                </label>
+                <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
+                  <input formControlName="color" type="radio" name="color" value="info">
+                  <i class="info"></i>
+                </label>
+                <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
+                  <input type="radio" name="color" value="warning">
+                  <i class="warning"></i>
+                </label>
+                <label class="radio radio-inline m-a-0 ui-check ui-check-color ui-check-md">
+                  <input type="radio" name="color" value="danger">
+                  <i class="danger"></i>
+                </label>
+              </p>
+              <div class="form-group">
+                <label>Assign to:</label>
+                <select class="form-control">
+                  <option *ngFor="let user of users" value="{{ user.id }}">{{ user.name }}</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-info">Create</button>
+          </form>
+        </div>
+      </div>
+    </div>	
+  </div>
+</div>

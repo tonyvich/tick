@@ -1,0 +1,26 @@
+<div class="b-t">
+  <div class="center-block w-xxl w-auto-xs p-y-md text-center">
+    <div class="p-a-md">
+      <h2>Log in TickMaster</h2>
+      <form [formGroup]="form" (ngSubmit)="login()">
+        <div *ngIf="invalidLogin" class="alert alert-danger">
+          Invalid credentials
+        </div>
+        <div class="form-group">
+          <input formControlName="username" type="email" class="form-control" id="email" placeholder="Email">
+          <div *ngIf="username.touched && username.invalid" class="alert alert-danger">
+            Please provide a valid email
+          </div>
+        </div>
+        <div class="form-group">
+          <input formControlName="password" type="password" class="form-control" id="password" placeholder="Password">
+          <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
+            <div *ngIf="password.errors.minlength"> The password should have six characters minimum</div>
+            <div *ngIf="password.errors.required"> Please provide your password </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled] = "!form.valid">Connect</button>
+      </form>
+    </div>
+  </div>
+</div>

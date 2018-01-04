@@ -89,7 +89,7 @@ class TaskController extends Controller
         if( Task::where( 'id', $id )->exists() ){
             if( $task->check_can_complete( Auth::id() ) )
             {
-                if( $task->completed() )
+                if( $task->completed( Auth::id() ) )
                 {
                     return response()->json( $this->successArray, $this->successStatus );
                 } else {

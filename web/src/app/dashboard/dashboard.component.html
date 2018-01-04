@@ -1,0 +1,51 @@
+<div class="padding">
+  <div class="row">
+  <!-- Project wild cards -->
+    <div class="col-md-3" *ngFor="let project of projects">
+      <div class="box text-center">
+        <div class="p-a-md">
+          <br>
+          <h4>{{ project.name }}</h4>
+          <a [routerLink]="['/project', project.id ]" class="btn btn-sm btn-outline rounded b-accent">View</a>
+        </div>
+        <div class="row row-col no-gutter b-t {{ project.color }}">
+          <div class="col-xs-4 b-r">
+            <span class="p-y block text-center" data-ui-toggle-class>
+              <strong class="block">{{ project.counted.all }}</strong>
+              <span class="block">Tasks</span>
+            </span>
+          </div>
+          <div class="col-xs-4 b-r">
+            <span class="p-y block text-center" data-ui-toggle-class>
+              <strong class="block">{{ project.counted.finished }}</strong>
+              <span class="block">Finished</span>
+            </span>
+          </div>
+          <div class="col-xs-4">
+            <span class="p-y block text-center" data-ui-toggle-class>
+              <strong class="block">{{ project.counted.remaining }}</strong>
+              <span class="block">Remaining</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="box text-center">
+        <div class="p-a-md">
+          <br>
+          <br>
+          <br>
+          <a routerLink="/new-project" class="btn btn-lg btn-outline rounded b-accent"><i class="fa fa-plus"></i> New project
+          </a>
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
+      </div>
+    </div>
+  <!-- Project wild cards -->
+  </div>
+</div>
