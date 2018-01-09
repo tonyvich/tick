@@ -1,3 +1,4 @@
+import { UserService } from './user.service';
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, Headers, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
@@ -8,7 +9,7 @@ export class AuthService {
 
   private serverUrl = "http://localhost/tick_master_angular/server/public/api";                    // Url of the laravel server 
 
-  constructor( private http:Http, private router:Router ) {} 
+  constructor( private http:Http, private router:Router, private userService:UserService ) {} 
 
 /**
  * Login
@@ -27,11 +28,14 @@ export class AuthService {
     headers.append( 'X-Requested-With', 'XMLHttpRequest' );
     let options = new RequestOptions({ headers : headers });
     // Send request
-    return this.http.post( this.serverUrl + "/login", body.toString(), options ).map( response => {
-      let result = response.json();
-      localStorage.setItem( 'token', result.success.token );
-      this.router.navigate( ['/'] );
-    });
+    return this.http.post( this.serverUrl + "/login", body.toString(), options ).map( 
+      response => {
+        let result = response.json();
+        localStorage.setItem( 'token', result.success.token );
+        // Redirect
+        this.router.navigate( ['/'] );
+      }
+    );
   }
 
 /**

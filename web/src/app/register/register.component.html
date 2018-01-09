@@ -1,3 +1,57 @@
-<p>
-  register works!
-</p>
+<div class="app" id="app">
+
+  <div class="padding">
+    <div class="navbar">
+      <div class="pull-center">
+        <!-- brand -->
+        <a href="index.html" class="navbar-brand">
+        	<div data-ui-include="'images/logo.svg'"></div>
+        	<img src="images/logo.png" alt="." class="hide">
+        	<span class="hidden-folded inline">Register in Tick Master</span>
+        </a>
+        <!-- / brand -->
+      </div>
+    </div>
+  </div>
+  
+  <div class="b-t">
+    <div class="center-block w-xxl w-auto-xs p-y-md text-center">
+      <div class="p-a-md">
+        <div class="alert alert-danger" *ngIf="saveError">
+          An error occured while registering you, please check your form and re-submit
+        </div>
+        <form [formGroup]="registerForm" (ngSubmit)="saveUser()">
+          <div class="form-group">
+            <input formControlName="name" type="text" class="form-control" placeholder="Username" required>
+          </div>
+          <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+            Please provide an unique username with 6 characters at least!
+          </div>
+          <div class="form-group">
+            <input formControlName="email" type="email" class="form-control" placeholder="Email" required>
+          </div>
+          <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+            Please provide a valid email
+          </div>
+          <div class="form-group">
+            <input formControlName="password" type="password" class="form-control" placeholder="Password" required>
+          </div>
+          <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
+            Please provide a password with at least 6 characters
+          </div>
+          <div class="form-group">
+            <input formControlName="c_password" (keyup)="checkPasswordMatch()" type="password" class="form-control" placeholder="Confirm Password" required>
+          </div>
+          <div class="alert alert-danger" *ngIf="!passwordMatch">
+            The confirm password should match the password
+          </div>  
+          <button type="submit" class="btn btn-lg black p-x-lg" [disabled]="!registerForm.valid" >Sign Up</button>
+        </form>
+        <div class="p-y-lg text-center">
+          <div>Already have an account? <a [routerLink]="['/login']" class="text-primary _600">Sign in</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

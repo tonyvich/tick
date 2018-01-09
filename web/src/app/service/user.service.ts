@@ -42,7 +42,7 @@ export class UserService {
       ([key, value]) => body.set( key, value )
     );
     // Sending the request
-    return this.http.post( this.serverUrl + "/user", body.toString(), this.options );
+    return this.http.post( this.serverUrl + "/register", body.toString(), this.options );
   }
 
   /**

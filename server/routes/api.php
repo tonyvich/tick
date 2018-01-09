@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth:api'], function(){
 	Route::put( '/project', 'API\ProjectController@update' )->name( 'project.update' );
 	
 	// Task route
+	Route::get( '/task/{id}', 'API\TaskController@tview')->name( 'task.view' );
 	Route::post( '/tasks', 'API\TaskController@create' )->name( 'task.create' );
 	Route::put( '/tasks', 'API\TaskController@update' )->name( 'task.update' );
 	Route::put( '/complete_task/{id}', 'API\TaskController@completed' )->name( 'task.completed' );
@@ -34,5 +35,5 @@ Route::group(['middleware' => 'auth:api'], function(){
 	Route::get( '/users', 'API\UserController@users' )->name( 'user.index' );
 	Route::put( '/role_edit', 'API\UserController@role_edit' )->name( 'user.role_edit' );
 	Route::put( '/password_edit', 'API\UserController@role_edit' )->name( 'user.password_edit' );
-	Route::get('/details', 'API\UserController@details')->name( 'user.details' );
+	Route::get( '/details', 'API\UserController@details')->name( 'user.details' );
 });

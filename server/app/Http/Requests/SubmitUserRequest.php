@@ -24,11 +24,10 @@ class SubmitUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'         => 'required',
+            'name'         => 'required|unique:users',
             'email'        => 'required|email|unique:users',
             'password'     => 'required',
             'c_password'   => 'required|same:password',
-            'role'         => 'required'
         ];
     }
 }

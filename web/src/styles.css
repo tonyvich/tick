@@ -6,6 +6,6 @@
 @import 'assets/styles/font.css';
 @import 'assets/styles/app.css';
 
-.custom-content {
-    padding-top: 3.5rem !important;
+body {
+    padding-top: 3rem !important;
 }

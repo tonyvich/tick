@@ -40,8 +40,17 @@ class UserController extends Controller
 
     public function register( SubmitUserRequest $request)
     {
+        // Checking if first register 
+        $userCount = User::count();
+        if( $userCount == 0){
+            $role = 'admin'; // Default admin role for the first user
+        } else  {
+            $role = 'subordinate'; // Default subordinate role for others
+        }
+
         // Saving user
         $input = $request->all();
+        $input[ 'role' ] = $role;
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         $success['token'] =  $user->createToken('MyApp')->accessToken;
@@ -67,7 +76,7 @@ class UserController extends Controller
  */
     public function users(){
         return response()->json(
-            [ 'users' => User::all() ],
+            [ 'users' => User::where( 'id','<>', 1)->get() ],
             $this->successStatus
         );
     }

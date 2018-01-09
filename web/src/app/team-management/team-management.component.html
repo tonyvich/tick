@@ -1,3 +1,57 @@
-<p>
-  team-management works!
-</p>
+<div *ngIf="control">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      
+      <div class="box">
+        
+        <div class="box-header">
+          <h2> Manage team members role's </h2>
+        </div>
+        
+        <div class="box-body">
+          <div class="table-responsive">
+            <data-table
+            [items] = "items"
+            [itemCount] = "userCount"
+            (reload) = "reloadUsers($event)"
+    
+            [pagination]="false"
+            [indexColumn]="false"
+            [selectColumn]="false"
+            [multiSelect]="false"
+            >
+            <data-table-column
+              property="name"
+              header="Username"
+              sortable="true">
+            </data-table-column>
+            <data-table-column
+              property="email"
+              header="Email"
+              sortable="true">
+            </data-table-column>
+            <data-table-column
+              property="role"d
+              header="Current Role"
+              sortable="true">
+              <ng-template #dataTableCell let-item="item">
+                <span *ngIf="item.role == 'admin'"> Admin </span>
+                <span *ngIf="item.role == 'subordinate'"> Subordinate</span>
+              </ng-template>
+            </data-table-column>
+            <data-table-column
+              header="Actions">
+              <ng-template #dataTableCell let-item="item">
+                <span *ngIf="item.role != 'admin'"> <button class="btn btn-sm btn-white" (click)="changeRole(item, 'admin' )">Admin</button> </span>
+                <span *ngIf="item.role != 'subordinate'"> <button class="btn btn-sm btn-white" (click)="changeRole(item, 'subordinate' )">Subordinate</button> </span>
+              </ng-template>
+            </data-table-column>
+            </data-table>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

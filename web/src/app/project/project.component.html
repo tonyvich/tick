@@ -1,8 +1,9 @@
+<app-navbar></app-navbar>
 <div class="padding" *ngIf="dataReady">
   <div class="row">
     <div class="col-md-10 offset-md-1">
       <!-- Project details-->
-      <div class="box primary">
+      <div class="box {{ project.project.color }}">
         <div class="box-header">
           <h2>{{ project.project.name }}</h2>
         </div>

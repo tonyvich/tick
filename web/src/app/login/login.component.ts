@@ -51,8 +51,9 @@ export class LoginComponent implements OnInit {
   /**
    * Login
    */
-  login(){
-    this.authService.login( this.form.value ).subscribe( result => {
+  login() {
+    this.authService.login( this.form.value ).subscribe( 
+    result => {
     }, error => {
       this.invalidLogin = true;
     }); 

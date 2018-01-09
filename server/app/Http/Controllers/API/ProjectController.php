@@ -19,7 +19,7 @@ class ProjectController extends Controller
  */
     public function get_user_projects( $column = 'ends_at', $order = 'asc' )
     {
-        $projects = Project::where( 'user_id', Auth::id() )->orderBy( $column , $order )->get();
+        $projects = Project::where( 'assigned_to', Auth::id() )->orderBy( $column , $order )->get();
         foreach( $projects as &$project )
         {
             $project[ 'tasks' ] = $project->tasks()->get();

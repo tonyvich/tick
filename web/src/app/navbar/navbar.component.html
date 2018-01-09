@@ -1,19 +1,41 @@
-<nav class="navbar navbar-expand-md bg-white fixed-top">
-  <a class="navbar-brand" href="#">Dashboard</a>
-  <button class="navbar-toggler" type="button" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse">
-      <ul class="navbar-nav mr-auto">
-          <li class="nav-item dropdown pull-right">
-              <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown01">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-          </li>
-      </ul>
-  </div>
-</nav>
+<div class="app-header white bg b-b">
+    <div class="navbar">
+        <a data-toggle="modal" data-target="#aside" class="navbar-item pull-left hidden-lg-up p-r m-a-0">
+            <i class="ion-navicon"></i>
+        </a>
+        <div class="navbar-item pull-left h5" id="pageTitle">{{ firstTitle }}</div>
+        <!-- nabar right -->
+        <div class="navbar-item pull-left" *ngIf="navTitle">
+            <a class="nav-link text-muted" [routerLink]="[navLink]">{{ navTitle }}</a>
+        </div>
+        <ul class="nav navbar-nav pull-right">
+            <li class="nav-item dropdown" ngbDropdown>
+                <a ngbDropdownToggle class="nav-link clear" data-toggle="dropdown" id="navbarDropdownToggle">
+                    <span class="avatar w-32">
+                        <img src="images/a3.jpg" class="w-full rounded" alt="...">
+                    </span>
+                </a>
+                <div ngbDropdownMenu class="dropdown-menu w dropdown-menu-scale pull-right" aria-labelledby="navbarDropdownToggle">
+                    <a class="dropdown-item" href="profile.html">
+                        <span>Profile</span>
+                    </a>
+                    <a class="dropdown-item" href="setting.html">
+                        <span>Settings</span>
+                    </a>
+                    <a class="dropdown-item" href="app.inbox.html">
+                        <span>Inbox</span>
+                    </a>
+                    <a class="dropdown-item" href="app.message.html">
+                        <span>Message</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="docs.html">
+                        Need help?
+                    </a>
+                    <a class="dropdown-item" href="signin.html">Sign out</a>
+                </div>
+            </li>
+        </ul>
+        <!-- / navbar right -->
+    </div>
+</div>
