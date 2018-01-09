@@ -1,5 +1,10 @@
-<app-navbar></app-navbar>
 <div *ngIf="dataReady">
+  <app-navbar
+    [firstTitle]="'New task'"
+    [navTitle]="'Back to project'"
+    [navLink]="'/project/' + project.project.id"
+  >
+  </app-navbar>
   <div class="row">
     <div class="col-md-8 offset-md-2">
       <div class="box">

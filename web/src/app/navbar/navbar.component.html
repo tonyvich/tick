@@ -10,29 +10,15 @@
         </div>
         <ul class="nav navbar-nav pull-right">
             <li class="nav-item dropdown" ngbDropdown>
-                <a ngbDropdownToggle class="nav-link clear" data-toggle="dropdown" id="navbarDropdownToggle">
-                    <span class="avatar w-32">
-                        <img src="images/a3.jpg" class="w-full rounded" alt="...">
-                    </span>
+                <a ngbDropdownToggle class="nav-link clear" id="navbarDropdownToggle">
+                    <i class="fa fa-user"></i>
                 </a>
-                <div ngbDropdownMenu class="dropdown-menu w dropdown-menu-scale pull-right" aria-labelledby="navbarDropdownToggle">
-                    <a class="dropdown-item" href="profile.html">
-                        <span>Profile</span>
-                    </a>
-                    <a class="dropdown-item" href="setting.html">
-                        <span>Settings</span>
-                    </a>
-                    <a class="dropdown-item" href="app.inbox.html">
-                        <span>Inbox</span>
-                    </a>
-                    <a class="dropdown-item" href="app.message.html">
-                        <span>Message</span>
+                <div ngbDropdownMenu class="dropdown-menu pull-left" aria-labelledby="navbarDropdownToggle">
+                    <a class="dropdown-item" [routerLink]="['password-edit']">
+                        <span>Password edit</span>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="docs.html">
-                        Need help?
-                    </a>
-                    <a class="dropdown-item" href="signin.html">Sign out</a>
+                    <a class="dropdown-item" [routerLink]="['logout']">Sign out</a>
                 </div>
             </li>
         </ul>
