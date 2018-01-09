@@ -1,8 +1,7 @@
-import { UserService } from './user.service';
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, Headers, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
-import 'rxjs/add/operator/map';
+import { UserService } from './user.service';
 
 @Injectable()
 export class AuthService {
@@ -28,19 +27,7 @@ export class AuthService {
     headers.append( 'X-Requested-With', 'XMLHttpRequest' );
     let options = new RequestOptions({ headers : headers });
     // Send request
-    return this.http.post( this.serverUrl + "/login", body.toString(), options ).map( 
-      response => {
-        let result = response.json();
-        localStorage.setItem( 'token', result.success.token );
-        this.userService.currentUser().subscribe(
-          response => {
-            localStorage.setItem( 'role', response.json().user.role );
-            // Redirect
-            this.router.navigate( ['/'] );
-          }
-        );
-      }
-    );
+    return this.http.post( this.serverUrl + "/login", body.toString(), options );
   }
 
 /**
@@ -48,6 +35,7 @@ export class AuthService {
  */
   logout() {
     localStorage.removeItem( 'token' );
+    localStorage.removeItem( 'role' );
     this.router.navigate( ['/login'] );
   }
 

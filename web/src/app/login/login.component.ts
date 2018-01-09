@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
-import { error } from 'selenium-webdriver';
+import { AuthService } from '../service/auth.service';
+import { UserService } from 'app/service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -22,11 +22,11 @@ export class LoginComponent implements OnInit {
     ),  
     password  : new FormControl(
       '',
-      [ Validators.required, Validators.minLength(6) ]
+      [ Validators.required ]
     )  
   });
 
-  constructor( private authService:AuthService, private router:Router )  { }
+  constructor( private authService:AuthService, private router:Router, private userService:UserService )  { }
 
   /**
    * On Init
@@ -52,11 +52,22 @@ export class LoginComponent implements OnInit {
    * Login
    */
   login() {
+    console.log( this.form.value );
     this.authService.login( this.form.value ).subscribe( 
-    result => {
-    }, error => {
-      this.invalidLogin = true;
-    }); 
+      response => {
+        let result = response.json();
+        localStorage.setItem( 'token', result.success.token );
+        this.userService.currentUser().subscribe(
+          response => {
+            localStorage.setItem( 'role', response.json().user.role );
+            // Redirect
+            this.router.navigate( ['/'] );
+          }
+        );
+      }, error => {
+        this.invalidLogin = true;
+      }
+    ); 
   }
 
 }
