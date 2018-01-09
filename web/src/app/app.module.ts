@@ -30,6 +30,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { LogoutComponent } from './logout/logout.component';
 
 // Services
 import { AuthGuardService } from 'app/service/auth-guard.service';
@@ -37,6 +38,7 @@ import { AuthService } from 'app/service/auth.service';
 import { ProjectService } from 'app/service/project.service';
 import { TaskService } from 'app/service/task.service';
 import { UserService } from './service/user.service';
+import { AdminGuardService } from 'app/service/admin-guard.service';
 
 @NgModule({
   imports: [ 
@@ -60,13 +62,17 @@ import { UserService } from './service/user.service';
         component: LoginComponent 
       },
       { 
+        path: 'logout', 
+        component: LogoutComponent 
+      },
+      { 
         path: 'register', 
         component: RegisterComponent 
       },
       { 
         path: 'team-management', 
         component: TeamManagementComponent,
-        canActivate : [ AuthGuardService ]
+        canActivate : [ AdminGuardService ]
       },
       { 
         path: 'password-edit', 
@@ -130,13 +136,15 @@ import { UserService } from './service/user.service';
     LoginComponent, 
     NavbarComponent, 
     FooterComponent, 
+    LogoutComponent, 
   ],
   providers: [
     AuthService,
     AuthGuardService,
     ProjectService,
     TaskService,
-    UserService
+    UserService,
+    AdminGuardService
   ],
   bootstrap: [ 
     AppComponent 

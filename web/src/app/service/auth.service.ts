@@ -32,8 +32,13 @@ export class AuthService {
       response => {
         let result = response.json();
         localStorage.setItem( 'token', result.success.token );
-        // Redirect
-        this.router.navigate( ['/'] );
+        this.userService.currentUser().subscribe(
+          response => {
+            localStorage.setItem( 'role', response.json().user.role );
+            // Redirect
+            this.router.navigate( ['/'] );
+          }
+        );
       }
     );
   }
@@ -58,4 +63,14 @@ export class AuthService {
       return false;
   }
 
+  /**
+   * isAdmin
+   * @returns boolean
+   */
+
+  isAdmin() {
+    let role = localStorage.getItem('role');
+    if( role == "admin" )
+      return true;
+  }
 }
