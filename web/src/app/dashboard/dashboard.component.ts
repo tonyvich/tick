@@ -9,7 +9,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 })
 export class DashboardComponent implements OnInit {
 
-  private projects: any[];
+  projects: any[];
 
   constructor( private service:ProjectService ) { }
 

@@ -10,12 +10,6 @@ import { DataTableModule } from 'angular-4-data-table/src/index';
 
 import { AppComponent } from './app.component';
 
-// Components
-import { DataTableDemo1 } from './demo1/data-table-demo1';
-import { DataTableDemo2 } from './demo2/data-table-demo2';
-import { DataTableDemo3 } from './demo3/data-table-demo3';
-import { DataTableDemo1Remote } from './demo1/data-table-demo1-remote';
-
 import { TaskTableComponent } from './task-table/task-table.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NewTaskComponent } from './new-task/new-task.component';
@@ -117,11 +111,6 @@ import { AdminGuardService } from 'app/service/admin-guard.service';
   declarations: [ 
     AppComponent, 
 
-    DataTableDemo1, 
-    DataTableDemo2,
-    DataTableDemo3, 
-    DataTableDemo1Remote, 
-    
     TaskTableComponent, 
     DashboardComponent, 
     NewTaskComponent, 

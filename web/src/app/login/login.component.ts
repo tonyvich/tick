@@ -11,7 +11,7 @@ import { error } from 'selenium-webdriver';
 })
 export class LoginComponent implements OnInit {
 
-  private invalidLogin = false;
+  invalidLogin = false;
   /**
    * Login Form
    */
