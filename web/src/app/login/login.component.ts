@@ -52,14 +52,15 @@ export class LoginComponent implements OnInit {
    * Login
    */
   login() {
-    console.log( this.form.value );
     this.authService.login( this.form.value ).subscribe( 
       response => {
         let result = response.json();
         localStorage.setItem( 'token', result.success.token );
         this.userService.currentUser().subscribe(
           response => {
-            localStorage.setItem( 'role', response.json().user.role );
+            localStorage.setItem( 'user.role', response.json().user.role );
+            localStorage.setItem( 'user.name', response.json().user.name );
+            localStorage.setItem( 'user.email', response.json().user.email );
             // Redirect
             this.router.navigate( ['/'] );
           }

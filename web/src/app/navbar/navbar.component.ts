@@ -11,9 +11,12 @@ export class NavbarComponent implements OnInit {
   @Input() navTitle:string;
   @Input() navLink:string;
 
+  username:any;
+
   constructor() { }
 
   ngOnInit() {
+    this.username = localStorage.getItem( 'user.name' );
   }
 
 }

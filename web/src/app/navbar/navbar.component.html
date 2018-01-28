@@ -11,7 +11,7 @@
         <ul class="nav navbar-nav pull-right">
             <li class="nav-item dropdown" ngbDropdown>
                 <a ngbDropdownToggle class="nav-link clear" id="navbarDropdownToggle">
-                    <i class="fa fa-user"></i>
+                    <i class="fa fa-user"></i> <strong>{{ username }}</strong>
                 </a>
                 <div ngbDropdownMenu class="dropdown-menu pull-left" aria-labelledby="navbarDropdownToggle">
                     <a class="dropdown-item" [routerLink]="['/password-edit']">

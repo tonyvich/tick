@@ -6,13 +6,13 @@ import { UserService } from './user.service';
 @Injectable()
 export class AuthService {
 
-  private serverUrl = "http://localhost/tick_master_angular/server/public/api";                    // Url of the laravel server 
+  private serverUrl = "http://localhost/tick_master_angular/server/public/api";                    // Url of the laravel server
 
-  constructor( private http:Http, private router:Router, private userService:UserService ) {} 
+  constructor( private http:Http, private router:Router, private userService:UserService ) {}
 
 /**
  * Login
- * @param credentials 
+ * @param credentials
  */
   login( credentials )
   {
@@ -31,23 +31,26 @@ export class AuthService {
   }
 
 /**
- * Logout method 
+ * Logout method
  */
   logout() {
-    localStorage.removeItem( 'token' );
-    localStorage.removeItem( 'role' );
-    this.router.navigate( ['/login'] );
+    this.router.navigate( ['/login'] ).then( complete => {
+      localStorage.removeItem( 'token' );
+      localStorage.removeItem( 'user.role' );
+      localStorage.removeItem( 'user.name' );
+      localStorage.removeItem( 'user.email' );
+    });
   }
 
 /**
  * isLoggedIn
- * @returns boolean 
+ * @returns boolean
  */
   isLoggedIn() {
     let token = localStorage.getItem( 'token' );
     if( token )
       return true;
-    else 
+    else
       return false;
   }
 
@@ -57,7 +60,7 @@ export class AuthService {
    */
 
   isAdmin() {
-    let role = localStorage.getItem('role');
+    let role = localStorage.getItem('user.role');
     if( role == "admin" )
       return true;
   }
