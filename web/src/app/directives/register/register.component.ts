@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { UserService } from './../service/user.service';
+import { UserService } from 'app/service/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -71,28 +71,28 @@ export class RegisterComponent implements OnInit {
   }
 
   /**
-   * Get Name 
+   * Get Name
    */
   get name(){
     return this.registerForm.get( 'name' );
   }
 
   /**
-   * Get Email 
+   * Get Email
    */
   get email(){
     return this.registerForm.get( 'email' );
   }
 
   /**
-   * Get Password 
+   * Get Password
    */
   get password(){
     return this.registerForm.get( 'password' );
   }
 
   /**
-   * Get Username 
+   * Get Username
    */
   get cPassword(){
     return this.registerForm.get( 'c_password' );

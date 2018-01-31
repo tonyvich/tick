@@ -1,6 +1,6 @@
 import { Component,  OnInit,  Input, ViewChild } from '@angular/core';
 import { DataTable, DataTableResource } from 'angular-4-data-table';
-import { ProjectService } from '../service/project.service';
+import { ProjectService } from 'app/service/project.service';
 import { TaskService } from 'app/service/task.service';
 import { Response } from '@angular/http/src/static_response';
 
@@ -23,18 +23,18 @@ export class TaskTableComponent implements OnInit {
   @ViewChild(DataTable) tasksTable: DataTable;
 
   constructor( private service:ProjectService, private taskService:TaskService ) {
-    
+
   }
 
   ngOnInit(){
-   this.loadProject( false ); 
+   this.loadProject( false );
   }
 
   loadProject( reload:boolean ){
     this.service.getProject( this.id, "name", "asc" ).subscribe(
       response => {
           this.project = response.json().project;
-          // Count project tasks 
+          // Count project tasks
           this.project.counted = this.service.countProjectTasks( this.project );
           this.taskResource = new DataTableResource( this.project.tasks );
           this.taskResource.count().then( count => this.taskCount = count );
@@ -55,11 +55,11 @@ export class TaskTableComponent implements OnInit {
       // Mark task completed if not
       this.taskService.completeTask( task.id ).subscribe(
         Response => {
-          this.loadProject( true ); 
+          this.loadProject( true );
         }
       );
     } else {
-      // Mark task as not completed 
+      // Mark task as not completed
       this.taskService.uncompleteTask( task.id ).subscribe(
         Response => {
           this.loadProject( true );

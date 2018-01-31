@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProjectService } from '../service/project.service';
+import { ProjectService } from 'app/service/project.service';
 
 
 @Component({
@@ -14,8 +14,8 @@ export class ProjectComponent implements OnInit {
   project;
   dataReady:boolean = false;
 
-  constructor( private route: ActivatedRoute, private service:ProjectService ) { 
-    
+  constructor( private route: ActivatedRoute, private service:ProjectService ) {
+
   }
 
   ngOnInit() {
@@ -25,11 +25,10 @@ export class ProjectComponent implements OnInit {
     this.service.getProject( this.project_id, "name", "asc" ).subscribe(
       response => {
           this.project = response.json().project;
-          // Count project tasks 
+          // Count project tasks
           this.project.counted = this.service.countProjectTasks( this.project );
           this.dataReady = true;
     });
   }
 
 }
- 

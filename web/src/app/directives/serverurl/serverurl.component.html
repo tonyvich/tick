@@ -1,0 +1,23 @@
+<app-navbar
+  [firstTitle]="'Configure Server URL'"
+  [navTitle]="'Back to Dashboard'"
+  [navLink]="'/'"
+></app-navbar>
+
+<div class="padding">
+  <div class="row">
+    <div class="col-md-4 offset-md-4" style="padding-top: 10%;">
+      <h2>Configure Server URL</h2>
+      <strong>
+        Current URL:
+      </strong>
+      {{ serverUrl }}
+      <form [formGroup]="form" (ngSubmit)="setUrl()">
+        <div class="form-group">
+          <input formControlName="url" type="text" class="form-control" id="url" placeholder="New URL">
+        </div>
+        <button type="submit" class="btn btn-lg black p-x-lg">Set URL</button>
+      </form>
+    </div>
+  </div>
+</div>

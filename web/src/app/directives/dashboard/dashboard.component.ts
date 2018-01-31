@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectService } from '../service/project.service';
+import { ProjectService } from '../../service/project.service';
 import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
@@ -14,13 +14,13 @@ export class DashboardComponent implements OnInit {
   constructor( private service:ProjectService ) { }
 
   ngOnInit() {
-    
+
     // Get current user projects
     this.service.getProjects( "created_at", "asc" ).subscribe(
       response => {
         this.projects = response.json().projects;
         Object.entries( this.projects ).forEach(
-          ([key, value]) => { 
+          ([key, value]) => {
             value.counted = this.service.countProjectTasks( value );
           }
         );

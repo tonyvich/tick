@@ -6,7 +6,7 @@ import { UserService } from './user.service';
 @Injectable()
 export class AuthService {
 
-  private serverUrl = "http://localhost/tick_master_angular/server/public/api";                    // Url of the laravel server
+  private serverUrl = localStorage.getItem( 'config.server_url' );                    // Url of the laravel server
 
   constructor( private http:Http, private router:Router, private userService:UserService ) {}
 

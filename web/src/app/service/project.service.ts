@@ -3,11 +3,11 @@ import { Http, RequestOptions, Headers, URLSearchParams, Response } from '@angul
 
 @Injectable()
 export class ProjectService {
-  
-  private serverUrl = "http://localhost/tick_master_angular/server/public/api";
+
+  private serverUrl = localStorage.getItem( 'config.server_url' );
   private options;
 
-  constructor( private http:Http ) { 
+  constructor( private http:Http ) {
     // Getting current users token
     let token = localStorage.getItem( 'token' );
     // Setting Headers
@@ -23,8 +23,8 @@ export class ProjectService {
 
   /**
    * getProjects ( Get current user projects )
-   * @param column 
-   * @param order 
+   * @param column
+   * @param order
    */
 
   getProjects( column:string , order:string )
@@ -34,9 +34,9 @@ export class ProjectService {
 
   /**
    * getProject( Get the project with the id project_id )
-   * @param project_id 
-   * @param task_column 
-   * @param order 
+   * @param project_id
+   * @param task_column
+   * @param order
    */
   getProject( project_id, task_column:string, order:string )
   {
@@ -45,11 +45,11 @@ export class ProjectService {
 
   /**
    * CountProjectTasks ( Get the status of the project tasks )
-   * @param project 
+   * @param project
    */
   countProjectTasks( project )
   {
-    let counted = { 
+    let counted = {
       all      : 0,
       finished : 0,
       remaining: 0

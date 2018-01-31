@@ -4,10 +4,10 @@ import { Http, RequestOptions, Headers, URLSearchParams } from '@angular/http';
 @Injectable()
 export class UserService {
 
-  private serverUrl = "http://localhost/tick_master_angular/server/public/api";                    // Url of the laravel server
+  private serverUrl = localStorage.getItem( 'config.server_url' );                    // Url of the laravel server
   private options
-  
-  constructor( private http:Http ) { 
+
+  constructor( private http:Http ) {
     // Getting current users token
     let token = localStorage.getItem( 'token' );
     // Setting Headers

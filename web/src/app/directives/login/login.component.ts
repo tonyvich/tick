@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../service/auth.service';
+import { AuthService } from 'app/service/auth.service';
 import { UserService } from 'app/service/user.service';
 
 @Component({
@@ -19,11 +19,11 @@ export class LoginComponent implements OnInit {
     username  : new FormControl(
       '',
       [ Validators.email, Validators.required ]
-    ),  
+    ),
     password  : new FormControl(
       '',
       [ Validators.required ]
-    )  
+    )
   });
 
   constructor( private authService:AuthService, private router:Router, private userService:UserService )  { }
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
    * Login
    */
   login() {
-    this.authService.login( this.form.value ).subscribe( 
+    this.authService.login( this.form.value ).subscribe(
       response => {
         let result = response.json();
         localStorage.setItem( 'token', result.success.token );
@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
       }, error => {
         this.invalidLogin = true;
       }
-    ); 
+    );
   }
 
 }

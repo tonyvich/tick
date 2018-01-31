@@ -4,10 +4,10 @@ import { Http, RequestOptions, Headers, URLSearchParams, Response } from '@angul
 @Injectable()
 export class TaskService {
 
-  private serverUrl = "http://localhost/tick_master_angular/server/public/api";
+  private serverUrl = localStorage.getItem( 'config.server_url' );
   private options
 
-  constructor( private http:Http ) { 
+  constructor( private http:Http ) {
     // Getting current users token
     let token = localStorage.getItem( 'token' );
     // Setting Headers
@@ -24,7 +24,7 @@ export class TaskService {
   /**
    * save Task ( add a task to a project )
    * @param task,
-   *  
+   *
    */
   saveTask( task ) {
     // Populating the request body

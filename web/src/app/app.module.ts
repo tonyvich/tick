@@ -10,21 +10,22 @@ import { DataTableModule } from 'angular-4-data-table/src/index';
 
 import { AppComponent } from './app.component';
 
-import { TaskTableComponent } from './task-table/task-table.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NewTaskComponent } from './new-task/new-task.component';
-import { NewProjectComponent } from './new-project/new-project.component';
-import { ProjectComponent } from './project/project.component';
-import { TeamManagementComponent } from './team-management/team-management.component';
-import { PasswordEditComponent } from './password-edit/password-edit.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { AccessDeniedComponent } from './access-denied/access-denied.component';
-import { UnknownErrorComponent } from './unknown-error/unknown-error.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { FooterComponent } from './footer/footer.component';
-import { LogoutComponent } from './logout/logout.component';
+import { TaskTableComponent } from './directives/task-table/task-table.component';
+import { DashboardComponent } from './directives/dashboard/dashboard.component';
+import { NewTaskComponent } from './directives/new-task/new-task.component';
+import { NewProjectComponent } from './directives/new-project/new-project.component';
+import { ProjectComponent } from './directives/project/project.component';
+import { TeamManagementComponent } from './directives/team-management/team-management.component';
+import { PasswordEditComponent } from './directives/password-edit/password-edit.component';
+import { NotFoundComponent } from './directives/not-found/not-found.component';
+import { AccessDeniedComponent } from './directives/access-denied/access-denied.component';
+import { UnknownErrorComponent } from './directives/unknown-error/unknown-error.component';
+import { RegisterComponent } from './directives/register/register.component';
+import { LoginComponent } from './directives/login/login.component';
+import { NavbarComponent } from './directives/navbar/navbar.component';
+import { FooterComponent } from './directives/footer/footer.component';
+import { LogoutComponent } from './directives/logout/logout.component';
+import { ServerurlComponent } from './directives/serverurl/serverurl.component';
 
 // Services
 import { AuthGuardService } from 'app/service/auth-guard.service';
@@ -33,99 +34,107 @@ import { ProjectService } from 'app/service/project.service';
 import { TaskService } from 'app/service/task.service';
 import { UserService } from './service/user.service';
 import { AdminGuardService } from 'app/service/admin-guard.service';
+import { ServerGuardService } from 'app/service/server-guard.service';
 
 @NgModule({
-  imports: [ 
-    BrowserModule, 
-    CommonModule, 
+  imports: [
+    BrowserModule,
+    CommonModule,
     FormsModule,
     HttpModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     DataTableModule,
     NgbModule.forRoot(),
     // Routing
     RouterModule.forRoot([
-      { 
-        path: '', 
+      {
+        path: '',
         component: DashboardComponent,
-        canActivate : [ AuthGuardService ] 
+        canActivate : [ AuthGuardService, ServerGuardService ]
       },
       // User management routes
-      { 
-        path: 'login', 
-        component: LoginComponent 
+      {
+        path: 'login',
+        component: LoginComponent,
+        canActivate : [ ServerGuardService ]
       },
-      { 
-        path: 'logout', 
-        component: LogoutComponent 
+      {
+        path: 'logout',
+        component: LogoutComponent
       },
-      { 
-        path: 'register', 
-        component: RegisterComponent 
+      {
+        path: 'register',
+        component: RegisterComponent,
+        canActivate : [ ServerGuardService ]
       },
-      { 
-        path: 'team-management', 
+      {
+        path: 'team-management',
         component: TeamManagementComponent,
         canActivate : [ AdminGuardService ]
       },
-      { 
-        path: 'password-edit', 
+      {
+        path: 'password-edit',
         component: PasswordEditComponent,
-        canActivate : [ AuthGuardService ] 
+        canActivate : [ AuthGuardService ]
       },
       // Task management route
-      { 
-        path: 'project/:project_id', 
+      {
+        path: 'project/:project_id',
         component: ProjectComponent,
         canActivate : [ AuthGuardService ]
       },
-      { 
-        path: 'new-project', 
+      {
+        path: 'new-project',
         component: NewProjectComponent,
-        canActivate : [ AuthGuardService ] 
+        canActivate : [ AuthGuardService ]
       },
-      { 
-        path: 'new-task/:project_id', 
+      {
+        path: 'new-task/:project_id',
         component: NewTaskComponent ,
         canActivate : [ AuthGuardService ]
       },
       // Error routes
-      { 
-        path: 'access-denied', 
-        component: AccessDeniedComponent 
+      {
+        path: 'access-denied',
+        component: AccessDeniedComponent
       },
-      { 
-        path: 'not-found/:message', 
+      {
+        path: 'not-found/:message',
         component: NotFoundComponent
       },
-      { 
-        path: 'unknown-error/:message', 
+      {
+        path: 'unknown-error/:message',
         component: UnknownErrorComponent
       },
-      { 
-        path: '**', 
+      {
+        path: 'config-url',
+        component: ServerurlComponent
+      },
+      {
+        path: '**',
         component: NotFoundComponent
       },
-    ]) 
+    ])
   ],
-  declarations: [ 
-    AppComponent, 
+  declarations: [
+    AppComponent,
 
-    TaskTableComponent, 
-    DashboardComponent, 
-    NewTaskComponent, 
-    NewProjectComponent, 
-    ProjectComponent, 
-    TeamManagementComponent, 
-    PasswordEditComponent, 
-    NotFoundComponent, 
-    AccessDeniedComponent, 
-    UnknownErrorComponent, 
-    RegisterComponent, 
-    LoginComponent, 
-    NavbarComponent, 
-    FooterComponent, 
-    LogoutComponent, 
+    TaskTableComponent,
+    DashboardComponent,
+    NewTaskComponent,
+    NewProjectComponent,
+    ProjectComponent,
+    TeamManagementComponent,
+    PasswordEditComponent,
+    NotFoundComponent,
+    AccessDeniedComponent,
+    UnknownErrorComponent,
+    RegisterComponent,
+    LoginComponent,
+    NavbarComponent,
+    FooterComponent,
+    LogoutComponent,
+    ServerurlComponent,
   ],
   providers: [
     AuthService,
@@ -133,10 +142,11 @@ import { AdminGuardService } from 'app/service/admin-guard.service';
     ProjectService,
     TaskService,
     UserService,
-    AdminGuardService
+    AdminGuardService,
+    ServerGuardService
   ],
-  bootstrap: [ 
-    AppComponent 
+  bootstrap: [
+    AppComponent
   ]
 })
 export class AppModule { }

@@ -9,6 +9,15 @@
 <div class="padding">
   <div class="row">
   <!-- Project wild cards -->
+    <div class="col-md-3">
+      <div class="box text-center">
+        <div class="p-a-md" style="padding-top: 90px;padding-bottom:90px;">
+          <a routerLink="/new-project" class="btn btn-lg btn-outline rounded b-accent"><i class="fa fa-plus"></i> New project
+          </a>
+        </div>
+      </div>
+    </div>
+
     <div class="col-md-3" *ngFor="let project of projects">
       <div class="box text-center">
         <div class="p-a-md">
@@ -35,21 +44,6 @@
               <span class="block">Remaining</span>
             </span>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="box text-center">
-        <div class="p-a-md">
-          <br>
-          <br>
-          <br>
-          <a routerLink="/new-project" class="btn btn-lg btn-outline rounded b-accent"><i class="fa fa-plus"></i> New project
-          </a>
-          <br>
-          <br>
-          <br>
         </div>
       </div>
     </div>
