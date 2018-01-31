@@ -117,5 +117,6 @@ return [
     */
 
     'attributes' => [],
+    'version_number'    =>  'You must input a valid software version number'
 
 ];

@@ -180,6 +180,8 @@ return [
         Laravel\Passport\PassportServiceProvider::class,
         // Barry vdh cors handler
         Barryvdh\Cors\ServiceProvider::class,
+        // Rachid Laasri Installer
+        RachidLaasri\LaravelInstaller\Providers\LaravelInstallerServiceProvider::class
     ],
 
     /*
